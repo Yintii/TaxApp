@@ -1,0 +1,11 @@
+<h1>Wallets</h1>
+
+<%= link_to "New Wallet", new_wallet_path %>
+
+<div id="wallets">
+  <% @wallets.each do |wallet| %>
+    <div>
+      <%= link_to wallet.address, wallet_path(wallet.id) %>
+    </div>
+  <% end %>
+</div>

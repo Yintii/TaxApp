@@ -1,0 +1,8 @@
+<% cache @wallet do %>
+  <h1><%= @wallet.address %></h1>
+<% end %>
+<%= link_to "Back", wallets_path %>
+
+<%= link_to "Edit", edit_wallet_path(@wallet) %>
+<%= button_to "Delete", @wallet, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+

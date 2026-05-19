@@ -1,0 +1,24 @@
+<h1>Create an account</h1>
+
+<%= form_with model: @user, class: "flex flex-col items-center" do |form| %>
+  <%= form.email_field :email_address, 
+    required: true, 
+    autofocus: true, 
+    autocomplete: "username", 
+    placeholder: "Enter your email address", 
+    value: params[:email_address],
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+  <%= form.password_field :password, 
+    required: true, 
+    placeholder: "Enter your password", 
+    maxlength: 72,
+    class: "w-100 border border-solid border-grey-300 rounded p-1"%><br>
+  <%= form.password_field :password_confirmation_field,
+  required: true,
+  placeholder: "Same password again",
+  maxlength: 72,
+  class: "w-100 border border-solid border-grey-300 rounded p-1"%><br>
+
+  <%= form.submit "Sign Up" %>
+<% end %>
+<br>
