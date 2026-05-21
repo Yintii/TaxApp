@@ -1,0 +1,42 @@
+<div class="flex flex-col items-center p-5">
+
+  <%# Name & email summary %>
+  <div class="w-100 mb-6">
+    <p class="text-2xl font-semibold"><%= user.full_name %></p>
+    <p class="text-gray-500"><%= user.email_address %></p>
+  </div>
+
+  <%# Detail rows %>
+  <div class="w-100 border border-solid border-grey-300 rounded mb-1 p-3">
+    <span class="text-xs text-gray-400 uppercase tracking-wide">First Name</span>
+    <p><%= user.first_name %></p>
+  </div>
+
+  <div class="w-100 border border-solid border-grey-300 rounded mb-1 p-3">
+    <span class="text-xs text-gray-400 uppercase tracking-wide">Last Name</span>
+    <p><%= user.last_name %></p>
+  </div>
+
+  <div class="w-100 border border-solid border-grey-300 rounded mb-1 p-3">
+    <span class="text-xs text-gray-400 uppercase tracking-wide">Email</span>
+    <p><%= user.email_address %></p>
+  </div>
+
+  <% if user.phone_number.present? %>
+    <div class="w-100 border border-solid border-grey-300 rounded mb-1 p-3">
+      <span class="text-xs text-gray-400 uppercase tracking-wide">Phone</span>
+      <p><%= user.phone_number %></p>
+    </div>
+  <% end %>
+
+  <div class="w-100 border border-solid border-grey-300 rounded mb-1 p-3">
+    <span class="text-xs text-gray-400 uppercase tracking-wide">Address</span>
+    <p><%= user.address_1 %><% if user.address_2.present? %>, <%= user.address_2 %><% end %></p>
+    <p><%= user.city %>, <%= user.state %> <%= user.zip_code %></p>
+  </div>
+
+  <br>
+
+  <%= link_to "Edit Profile", edit_profile_path, class: "submit-btn border self-start border-solid border-grey-300 rounded py-5 px-10 cursor-pointer" %>
+
+</div>

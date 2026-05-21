@@ -1,1 +1,18 @@
-<h1>Hello, <%= @user.email_address %></h1>
+<% content_for :title, "My Profile" %>
+
+<h1 class="text-4xl py-5 font-bold">My Profile</h1>
+
+<% if notice %>
+  <p class="text-center text-green-600 font-medium py-2"><%= notice %></p>
+<% end %>
+<div class="flex">
+<%= turbo_frame_tag "profile_content", class:"flex" do %>
+<%= render "profile_details", user: @user %>
+<% end %>
+<div>
+<h2 class="text-3xl">Wallets</h2>  
+<%= turbo_frame_tag "wallet_content" do %>
+  <%= render "wallets/form", wallet: @wallet %>
+<% end %>
+<div>
+</div>

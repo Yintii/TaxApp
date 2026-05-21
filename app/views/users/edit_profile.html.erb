@@ -1,0 +1,7 @@
+<% content_for :title, "Edit Profile" %>
+
+<h1 class="text-4xl py-5 font-bold text-center">My Profile</h1>
+
+<%= turbo_frame_tag "profile_content" do %>
+  <%= render "profile_form", user: @user %>
+<% end %>

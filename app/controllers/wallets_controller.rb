@@ -39,7 +39,7 @@ class WalletsController < ApplicationController
 
   private
     def wallet_params
-      params.expect(wallet: [:address])
+      params.expect(wallet: [:address, :user_id])
     end
     
     def set_wallet

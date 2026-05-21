@@ -1,0 +1,86 @@
+<% if user.errors.any? %>
+  <div class="flex flex-col items-center pt-3">
+    <div class="w-100 bg-red-50 border border-red-300 rounded p-3 text-red-700 text-sm">
+      <strong><%= pluralize(user.errors.count, "error") %> prevented this update:</strong>
+      <ul class="list-disc list-inside mt-1">
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with model: user, url: update_profile_path, method: :patch, class: "flex flex-col items-center p-5" do |f| %>
+
+  <%= f.text_field :first_name,
+    required: true,
+    autocomplete: "given-name",
+    placeholder: "First Name",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <%= f.text_field :last_name,
+    required: true,
+    autocomplete: "family-name",
+    placeholder: "Last Name",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <%= f.email_field :email_address,
+    required: true,
+    autocomplete: "email",
+    placeholder: "Email address",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <%= f.telephone_field :phone_number,
+    autocomplete: "tel",
+    placeholder: "Phone (optional)",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <%= f.text_field :address_1,
+    required: true,
+    autocomplete: "address-line1",
+    placeholder: "123 Appleton St",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <%= f.text_field :address_2,
+    autocomplete: "address-line2",
+    placeholder: "unit/apt/ste...",
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+
+  <div class="flex items-center w-100">
+    <%= f.text_field :city,
+      required: true,
+      autocomplete: "address-level2",
+      placeholder: "San Diego",
+      class: "w-50 mr-auto border border-solid border-grey-300 rounded p-1" %>
+
+    <%= f.select :state, options_for_select([
+      ["AL", "AL"], ["AK", "AK"], ["AZ", "AZ"], ["AR", "AR"],
+      ["CA", "CA"], ["CO", "CO"], ["CT", "CT"], ["DE", "DE"],
+      ["DC", "DC"], ["FL", "FL"], ["GA", "GA"], ["HI", "HI"],
+      ["ID", "ID"], ["IL", "IL"], ["IN", "IN"], ["IA", "IA"],
+      ["KS", "KS"], ["KY", "KY"], ["LA", "LA"], ["ME", "ME"],
+      ["MD", "MD"], ["MA", "MA"], ["MI", "MI"], ["MN", "MN"],
+      ["MS", "MS"], ["MO", "MO"], ["MT", "MT"], ["NE", "NE"],
+      ["NV", "NV"], ["NH", "NH"], ["NJ", "NJ"], ["NM", "NM"],
+      ["NY", "NY"], ["NC", "NC"], ["ND", "ND"], ["OH", "OH"],
+      ["OK", "OK"], ["OR", "OR"], ["PA", "PA"], ["RI", "RI"],
+      ["SC", "SC"], ["SD", "SD"], ["TN", "TN"], ["TX", "TX"],
+      ["UT", "UT"], ["VT", "VT"], ["VA", "VA"], ["WA", "WA"],
+      ["WV", "WV"], ["WI", "WI"], ["WY", "WY"]
+    ], user.state),
+      class: "w-40 mr-auto border border-solid border-grey-300 rounded p-1" %>
+
+    <%= f.text_field :zip_code,
+      required: true,
+      autocomplete: "postal-code",
+      placeholder: "55555-5555",
+      class: "w-20 border border-solid border-grey-300 rounded p-1" %>
+  </div><br>
+
+  <div class="flex gap-4">
+    <%= link_to "Cancel", profile_path, class: "border border-solid border-grey-300 rounded py-5 px-10 cursor-pointer" %>
+    <%= f.submit "Save Changes", class: "submit-btn border border-solid border-grey-300 rounded py-5 px-10 cursor-pointer" %>
+  </div>
+
+<% end %>

@@ -1,24 +1,118 @@
-<h1>Create an account</h1>
+<h1 class="text-4xl py-5 font-bold text-center">Create an account</h1>
 
-<%= form_with model: @user, class: "flex flex-col items-center" do |form| %>
-  <%= form.email_field :email_address, 
+<%= form_with model: @user, class: "flex flex-col items-center p-5" do |form| %>
+  <%= form.text_field :first_name,
+    required: true,
+    autofocus: true,
+    autocomplete: "name",
+    placeholder: "First Name",
+    value: params[:first_name],
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+  <%= form.text_field :last_name,
+    required: true,
+    autocomplete: "name",
+    placeholder: "Last Name",
+    value: params[:last_name],
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+ <%= form.email_field :email_address, 
     required: true, 
-    autofocus: true, 
     autocomplete: "username", 
     placeholder: "Enter your email address", 
     value: params[:email_address],
     class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+  <%= form.text_field :address_1,
+    required: true,
+    autocomplete: "address",
+    placeholder: "123 Appleton St",
+    value: params[:address_1],
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+  <%= form.text_field :address_2,
+    autocomplete: "address",
+    placeholder: "unit/apt/ste...",
+    value: params[:address_2],
+    class: "w-100 border border-solid border-grey-300 rounded p-1" %><br>
+  <div class="flex items-center w-100">
+  <%= form.text_field :city,
+    required: true,
+    autocomplete: "city",
+    placeholder: "San Diego",
+    value: params[:city],
+    class: "w-50 mr-auto border border-solid border-grey-300 rounded p-1" %>
+  <%= form.select :state, options_for_select([
+    ["AL", "Alabama"],
+    ["AK", "Alaska"],
+    ["AZ", "Arizona"],
+    ["AR", "Arkansas"],
+    ["CA", "California"],
+    ["CO", "Colorado"],
+    ["CT", "Connecticuit"],
+    ["DE","Delaware"],
+    ["DC", "District of Columbia"],
+    ["FL", "Florida"],
+    ["GA", "Georgia"],
+    ["HI","Hawaii"],
+    ["ID","Idaho"],
+    ["IL", "Illinois"],
+    ["IN", "Indiana"],
+    ["IA", "Iowa"],
+    ["KS", "Kansas"],
+    ["KY", "Kentucky"],
+    ["LA", "Louisiana"],
+    ["ME", "Maine"],
+    ["MD", "Maryland"],
+    ["MA", "Massaschusetts"],
+    ["MI", "Michigan"],
+    ["MN", "Minnesota"],
+    ["MS", "Mississippi"],
+    ["MO", "Missouri"],
+    ["MT", "Montana"],
+    ["NE", "Nebraska"],
+    ["NV", "Nevada"],
+    ["NH", "New Hampshire"],
+    ["NJ", "New Jersey"],
+    ["NM", "New Mexico"],
+    ["NY", "New York"],
+    ["NC", "North Carolina"],
+    ["ND", "North Dakota"],
+    ["OH", "Ohio"],
+    ["OK", "Oklahoma"],
+    ["OR", "Oregon"],
+    ["PA", "Pennslyvania"],
+    ["RI", "Rhode Island"],
+    ["SC", "South Carolina"],
+    ["SD", "South Dakota"],
+    ["TN", "Tennessee"],
+    ["TX", "Texas"],
+    ["UT", "Utah"],
+    ["VT", "Vermont"],
+    ["VA", "Virgina"],
+    ["WA", "Washington"],
+    ["WV", "West Virgina"],
+    ["WI", "Wisconsin"],
+    ["WY", "Wyoming"]
+  ]),
+    class: "w-40 mr-auto border border-solid border-grey-300 rounded p-1" %>
+  <%= form.text_field :zip_code,
+    required: true,
+    autofocus: true,
+    autocomplete: "zipcode",
+    placeholder: "55555-5555",
+    value: params[:zip_code],
+    class: "w-20 border border-solid border-grey-300 rounded p-1" %>
+  </div><br>
   <%= form.password_field :password, 
     required: true, 
     placeholder: "Enter your password", 
     maxlength: 72,
     class: "w-100 border border-solid border-grey-300 rounded p-1"%><br>
-  <%= form.password_field :password_confirmation_field,
-  required: true,
-  placeholder: "Same password again",
-  maxlength: 72,
-  class: "w-100 border border-solid border-grey-300 rounded p-1"%><br>
-
-  <%= form.submit "Sign Up" %>
+  <%= form.password_field :password_confirmation,
+    required: true,
+    placeholder: "Same password again",
+    maxlength: 72,
+    class: "w-100 border border-solid border-grey-300 rounded p-1"%><br>
+  <%= form.submit "Sign Up", class: "submit-btn border border-solid border-grey-300 rounded py-5 px-10 cursor-pointer" %>
 <% end %>
-<br>
+<div>
+  <p class="text-center">Already have an account? <%= link_to "Sign in", new_session_path %></p>
+</div>
+
